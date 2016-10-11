@@ -44,6 +44,7 @@
 			maxWidth                  : Infinity,
 			minHeight                 : 0,
 			minWidth                  : 0,
+			heightOffset		 	  : 0,
 			resizeFrom                : 'parent',
 			scrolling                 : false,
 			sizeHeight                : true,
@@ -658,6 +659,7 @@
 			':' + settings[iframeId].enablePublicMethods +
 			':' + settings[iframeId].autoResize +
 			':' + settings[iframeId].bodyMargin +
+			':' + settings[iframeId].heighOffset +
 			':' + settings[iframeId].heightCalculationMethod +
 			':' + settings[iframeId].bodyBackground +
 			':' + settings[iframeId].bodyPadding +
@@ -725,6 +727,12 @@
 			if (('number'===typeof(settings[iframeId].bodyMargin)) || ('0'===settings[iframeId].bodyMargin)){
 				settings[iframeId].bodyMarginV1 = settings[iframeId].bodyMargin;
 				settings[iframeId].bodyMargin   = '' + settings[iframeId].bodyMargin + 'px';
+			}
+		}
+		
+		function setupHeightOffset(){
+			if (('number'===typeof(settings[iframeId].heightOffset)) || ('0'===settings[iframeId].heightOffset)){
+				settings[iframeId].heightOffset   = '' + settings[iframeId].heightOffset + 'px';
 			}
 		}
 
@@ -817,6 +825,7 @@
 			setScrolling();
 			setLimits();
 			setupBodyMarginValues();
+			setupBodyHeight();
 			init(createOutgoingMsg(iframeId));
 			setupIFrameObject();
 		} else {
