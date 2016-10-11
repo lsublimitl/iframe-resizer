@@ -825,7 +825,7 @@
 			setScrolling();
 			setLimits();
 			setupBodyMarginValues();
-			setupBodyHeight();
+			setupHeightOffset();
 			init(createOutgoingMsg(iframeId));
 			setupIFrameObject();
 		} else {
