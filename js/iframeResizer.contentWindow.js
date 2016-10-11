@@ -28,6 +28,7 @@
 		height                = 1,
 		heightCalcModeDefault = 'bodyOffset',
 		heightCalcMode        = heightCalcModeDefault,
+		heightOffset		  = 0,
 		initLock              = true,
 		initMsg               = '',
 		inPageLinks           = {},
@@ -191,13 +192,14 @@
 		interval           = (undefined !== data[4]) ? Number(data[4])   : interval;
 		autoResize         = (undefined !== data[6]) ? strBool(data[6])  : autoResize;
 		bodyMarginStr      = data[7];
-		heightCalcMode     = (undefined !== data[8]) ? data[8]           : heightCalcMode;
-		bodyBackground     = data[9];
-		bodyPadding        = data[10];
-		tolerance          = (undefined !== data[11]) ? Number(data[11]) : tolerance;
-		inPageLinks.enable = (undefined !== data[12]) ? strBool(data[12]): false;
-		resizeFrom         = (undefined !== data[13]) ? data[13]         : resizeFrom;
-		widthCalcMode      = (undefined !== data[14]) ? data[14]         : widthCalcMode;
+		heightOffset	   = (undefined !== data[8]) ? Number(data[8])   : heightOffset;
+		heightCalcMode     = (undefined !== data[9]) ? data[9]           : heightCalcMode;
+		bodyBackground     = data[10];
+		bodyPadding        = data[11];
+		tolerance          = (undefined !== data[12]) ? Number(data[12]) : tolerance;
+		inPageLinks.enable = (undefined !== data[13]) ? strBool(data[13]): false;
+		resizeFrom         = (undefined !== data[14]) ? data[14]         : resizeFrom;
+		widthCalcMode      = (undefined !== data[15]) ? data[15]         : widthCalcMode;
 	}
 
 	function readDataFromPage(){
@@ -800,7 +802,7 @@
 			},
 
 			lowestElement: function getBestHeight(){
-				return Math.max(getHeight.bodyOffset(), getMaxElement('bottom',getAllElements()));
+				return heightOffset + Math.max(getHeight.bodyOffset(), getMaxElement('bottom',getAllElements()));
 			},
 
 			taggedElement: function getTaggedElementsHeight(){
